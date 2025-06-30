@@ -1,103 +1,103 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>UcucuGames Layout</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background-color: #28a745; /* yeşil arka plan */
-      display: flex;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #000;
-    }
-    /* Sol panel - uzun beyaz dikdörtgen */
-    .left-panel {
-      background-color: #fff;
-      width: 25%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-      border-radius: 10px 0 0 10px;
-    }
-    .left-panel img {
-      max-width: 100%;
-      max-height: 80vh;
-      object-fit: contain;
-      background-color: transparent;
-    }
-    /* Sağ panel - 3x3 grid kutucuklar */
-    .right-panel {
-      width: 75%;
-      padding: 20px;
-      box-sizing: border-box;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 15px;
-      align-content: center;
-      justify-content: center;
-    }
-    .box {
-      background-color: #fff;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 10px;
-      user-select: none;
-      cursor: default;
-    }
-    .box.button {
-      cursor: pointer;
-      user-select: auto;
-      background-color: #61dafb;
-      color: #000;
-      font-weight: 700;
-      transition: background-color 0.3s ease;
-    }
-    .box.button:hover {
-      background-color: #21a1f1;
-      color: #fff;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>UcucuGames Layout</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background-color: #28a745; /* yeşil arka plan */
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000;
+  }
+  .left-panel {
+    background-color: #fff;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px 0 0 10px;
+  }
+  .left-panel img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    background-color: transparent;
+  }
+  .right-panel {
+    width: 75%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+    align-content: center;
+    justify-content: center;
+  }
+  .box {
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 10px;
+    user-select: none;
+  }
+  .box.button {
+    cursor: pointer;
+    background-color: #61dafb;
+    color: #000;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+  }
+  .box.button:hover {
+    background-color: #21a1f1;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
 
-  <div class="left-panel">
-    <img src="https://cdn.gardrops.com/media/catalog/product/cache/1/image/800x/17f82f742ffe127f42dca9de82fb58b1/c/o/coca_cola_ayisi_figur_oyuncak_1_3_1.png" alt="Coca-Cola Ayısı" />
-  </div>
+<div class="left-panel">
+  <img src="https://cdn.gardrops.com/media/catalog/product/cache/1/image/800x/17f82f742ffe127f42dca9de82fb58b1/c/o/coca_cola_ayisi_figur_oyuncak_1_3_1.png" alt="Coca-Cola Ayısı" />
+</div>
 
-  <div class="right-panel">
-    <div class="box button" id="btn1">Two Player Games</div>
-    <div class="box">Flapy Ücücü</div>
-    <div class="box">Oco Potat</div>
-    <div class="box">Ücücü İstemedi 😊</div>
-    <div class="box">Ücücü İstemedi 😊</div>
-    <div class="box">Ücücü İstemedi 😊</div>
-    <div class="box">Ücücü İstemedi 😊</div>
-    <div class="box">Ücücü İstemedi 😊</div>
-    <div class="box">Ücücü İstemedi 😊</div>
-  </div>
+<div class="right-panel">
+  <div class="box button" id="playSoundBtn">Two Player Games</div>
+  <div class="box">Flapy Ücücü</div>
+  <div class="box">Oco Potat</div>
+  <div class="box">Ücücü İstemedi 😊</div>
+  <div class="box">Ücücü İstemedi 😊</div>
+  <div class="box">Ücücü İstemedi 😊</div>
+  <div class="box">Ücücü İstemedi 😊</div>
+  <div class="box">Ücücü İstemedi 😊</div>
+  <div class="box">Ücücü İstemedi 😊</div>
+</div>
 
-  <audio id="laughSound" src="https://github.com/ucucugames/ucucu-assets/raw/main/ucucu.mp3"></audio>
+<audio id="ucucuAudio" preload="auto">
+  <source src="https://github.com/ucucugames/ucucu-assets/raw/main/ucucu.mp3" type="audio/mpeg" />
+  Tarayıcınız audio elementini desteklemiyor.
+</audio>
 
-  <script>
-    const btn1 = document.getElementById('btn1');
-    const laughSound = document.getElementById('laughSound');
+<script>
+  const playSoundBtn = document.getElementById('playSoundBtn');
+  const ucucuAudio = document.getElementById('ucucuAudio');
 
-    btn1.addEventListener('click', () => {
-      laughSound.currentTime = 0;
-      laughSound.play();
-    });
-  </script>
+  playSoundBtn.addEventListener('click', () => {
+    ucucuAudio.pause();
+    ucucuAudio.currentTime = 0;
+    ucucuAudio.play().catch(e => console.error('Ses çalma hatası:', e));
+  });
+</script>
 
 </body>
 </html>
