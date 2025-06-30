@@ -1,60 +1,78 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Ücücü Games</title>
+  <meta charset="UTF-8" />
+  <title>UcucuGames Layout</title>
   <style>
     body {
-      background-color: #7EEB39;
-      font-family: Arial;
-    }
-    .container {
+      margin: 0;
+      height: 100vh;
+      background-color: #28a745; /* yeşil arka plan */
       display: flex;
-      justify-content: space-between;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #000;
+    }
+    /* Sol panel - uzun beyaz dikdörtgen */
+    .left-panel {
+      background-color: #fff;
+      width: 25%;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      padding: 50px;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 10px 0 0 10px;
     }
-    .left-section img {
-      width: 300px;
-      border-radius: 20px;
-      background: white;
-      padding: 10px;
+    .left-panel img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      background-color: transparent;
     }
-    .right-section {
+    /* Sağ panel - 3x3 grid kutucuklar */
+    .right-panel {
+      width: 75%;
+      padding: 20px;
+      box-sizing: border-box;
       display: grid;
-      grid-template-columns: repeat(2, 200px);
-      gap: 15px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 15px;
+      align-content: center;
+      justify-content: center;
     }
-    .game-button {
-      background: linear-gradient(to right, #FFDD55, #FF8844);
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      color: black;
+    .box {
+      background-color: #fff;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      font-size: 1.2rem;
+      font-weight: 600;
       text-align: center;
-    }
-    .game-button:hover {
-      background: linear-gradient(to right, #FF8844, #FFDD55);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 10px;
+      user-select: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left-section">
-      <img src="cocacolaespuma.png" alt="Ücücü Games Ayı">
-    </div>
-    <div class="right-section">
-      <a href="/1" class="game-button">Two Player Games Ultra</a>
-      <a href="/2" class="game-button">Flapy Ücücü</a>
-      <a href="/3" class="game-button">Oco Potat</a>
-      <a href="/4" class="game-button">Ücücü İstemedi :)</a>
-      <a href="/5" class="game-button">Ücücü İstemedi :)</a>
-      <a href="/6" class="game-button">Ücücü İstemedi :)</a>
-    </div>
+
+  <div class="left-panel">
+    <img src="https://cdn.gardrops.com/media/catalog/product/cache/1/image/800x/17f82f742ffe127f42dca9de82fb58b1/c/o/coca_cola_ayisi_figur_oyuncak_1_3_1.png" alt="Coca-Cola Ayısı" />
   </div>
+
+  <div class="right-panel">
+    <div class="box">Two Player Games</div>
+    <div class="box">Flapy Ücücü</div>
+    <div class="box">Oco Potat</div>
+    <div class="box">Ücücü İstemedi 😊</div>
+    <div class="box">Ücücü İstemedi 😊</div>
+    <div class="box">Ücücü İstemedi 😊</div>
+    <div class="box">Ücücü İstemedi 😊</div>
+    <div class="box">Ücücü İstemedi 😊</div>
+    <div class="box">Ücücü İstemedi 😊</div>
+  </div>
+
 </body>
 </html>
