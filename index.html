@@ -1,45 +1,12 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ücücü Games</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+  text-align: center;Add commentMore actions
         }
 
-        body {
-            background-color: #75DD66;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
-
+        /* Başlık resimle çakışmasın diye yukarı taşıdım */
         /* Başlığı yukarı taşıdım */
         .header {
             font-size: 36px;
             font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 80%;
-            max-width: 1200px;
-            margin-top: -30px; /* Resmin üstüne sıkışmayı engellemek için */
-        }
-
-        .left-section {
-            flex: 1;
+@@ -43,13 +43,15 @@
             text-align: center;
         }
 
@@ -55,53 +22,25 @@
         }
 
         .right-section {
-            flex: 2;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            justify-content: center;
-        }
-
-        /* Butonlar artık kareye yakın (eni boyundan biraz uzun) */
-        .game-button {
-            background: linear-gradient(to bottom, #FFA500, #FF4500);
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            padding: 20px 40px; /* En-boy oranı düzeltildi */
-            border-radius: 15px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 180px; /* Buton genişliği */
-            height: 70px; /* Buton yüksekliği */
-        }
-
-        .game-button:hover {
-            transform: scale(1.1);
-            background: linear-gradient(to bottom, #FF4500, #FFA500);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="header">Ücücü Games <br> Burunlu Oyunları!!!</div>
+@@ -91,18 +93,31 @@
 
     <div class="container">
         <div class="left-section">
+            <img src="cocacolaespuma.png" alt="Ücücü Games Ayı">
             <!-- Resme tıklayınca müzik çalacak -->
             <img src="cocacolaespuma.png" alt="Ücücü Games Ayı" onclick="playUcucu()">
         </div>
 
         <div class="right-section">
             <a href="/1" class="game-button">Two Player Games ULTRA</a>
-            <a href="/2" class="game-button">Flappy ÜCÜCÜ</a>
+            <a href="/2" class="game-button">Flappy Ücücü</a>
+            <a href="/3" class="game-button">Ücücü istemedi😎</a>
+            <a href="/1" class="game-button">Ücücü istemedi😎</a>
+            <a href="/2" class="game-button">Ücücü istemedi😎</a>
+            <a href="/3" class="game-button">Ücücü istemedi😎</a>
+            <a href="/2" class="game-button">Oco Potat</a>
             <a href="/3" class="game-button">Flappy ÜCÜCÜ</a>
-            <a href="/1" class="game-button">Flappy ÜCÜCÜ</a>
+            <a href="/1" class="game-button">Flappy ÜCÜCÜ</a>Add commentMore actions
             <a href="/2" class="game-button">Flappy ÜCÜCÜ</a>
             <a href="/3" class="game-button">Flappy ÜCÜCÜ</a>
         </div>
