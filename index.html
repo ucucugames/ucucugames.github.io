@@ -27,6 +27,7 @@
     max-height: 80vh;
     object-fit: contain;
     background-color: transparent;
+    cursor: pointer; /* Tıklanabilir göster */
   }
   .right-panel {
     width: 75%;
@@ -68,7 +69,7 @@
 <body>
 
 <div class="left-panel">
-  <img src="https://ucucugames.github.io/cocacolaespuma.png" />
+  <img src="https://ucucugames.github.io/cocacolaespuma.png" id="ucucuImage" alt="Ucucu Resim" />
 </div>
 
 <div class="right-panel">
@@ -89,10 +90,10 @@
 </audio>
 
 <script>
-  const playSoundBtn = document.getElementById('playSoundBtn');
+  const ucucuImage = document.getElementById('ucucuImage');
   const ucucuAudio = document.getElementById('ucucuAudio');
 
-  playSoundBtn.addEventListener('click', () => {
+  ucucuImage.addEventListener('click', () => {
     ucucuAudio.pause();
     ucucuAudio.currentTime = 0;
     ucucuAudio.play().catch(e => console.error('Ses çalma hatası:', e));
