@@ -1,69 +1,50 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Ucucu Games</title>
-  <style>
-    body {
-      background-color: #66cc33;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 40px;
-    }
-    .left {
-      flex: 1;
-      text-align: center;
-    }
-    .left img {
-      max-width: 300px;
-      height: auto;
-    }
-    .right {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      padding: 20px;
-    }
-    .button {
-      background: linear-gradient(45deg, orange, gold);
-      border: none;
-      padding: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s;
-      text-align: center;
-      text-decoration: none;
-      color: black;
-    }
-    .button:hover {
-      transform: scale(1.05);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucucu Games | Gamesitesi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <img src="ow.png" alt="Coca Cola Ayıcığı">
+
+    <div class="container">
+        <nav class="sidebar">
+            <h2 class="logo">GameSitesi</h2>
+            <ul>
+                <li class="active"><a href="#"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> MAĞAZA</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> Envanterim</a></li>
+                <li><a href="#"><i class="fas fa-brands fa-youtube"></i> YouTube</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div class="banner">
+                <img src="https://via.placeholder.com/800x200?text=UCUCU+GAMES" alt="Uçucu Games Banner">
+            </div>
+
+            <section class="game-section">
+                <h3>ÖNE ÇIKAN OYUNLAR</h3>
+                <div class="grid">
+                    <a href="https://g.eaglercraft.com/" target="_blank" class="card">
+                        <div class="card-image">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft">
+                        </div>
+                        <p class="game-title">Minecraft 1.8.8</p>
+                    </a>
+
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/150" alt="Jumping Şakir">
+                        </div>
+                        <p class="game-title">Jumping Şakir</p>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-    <div class="right">
-      <a class="button" href="https://scratch.mit.edu/projects/your-project-id/" target="_blank">Two Player Games Ultra</a>
-      <a class="button" href="#" onclick="alert('Henüz eklenmedi :)')">Flapy Üçücüü</a>
-      <a class="button" href="https://poki.com/en/g/crazy-cars" target="_blank">Crazy Cars</a>
-      <div class="button">Ücücü	  İstemedi :)</div>
-      <div class="button">Ücücü İstemedi :)</div>
-      <div class="button">Ücücü İstemedi :)</div>
-      <div class="button">Ücücü İstemedi :)</div>
-      <div class="button">Ücücü İstemedi :)</div>
-    </div>
-  </div>
+
 </body>
+</html>
