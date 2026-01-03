@@ -1,50 +1,74 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ucucu Games | Gamesitesi</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+using UnityEngine;
+using System.Collections.Generic;
 
-    <div class="container">
-        <nav class="sidebar">
-            <h2 class="logo">GameSitesi</h2>
-            <ul>
-                <li class="active"><a href="#"><i class="fas fa-home"></i> Ana Sayfa</a></li>
-                <li><a href="#"><i class="fas fa-shopping-cart"></i> MAĞAZA</a></li>
-                <li><a href="#"><i class="fas fa-box"></i> Envanterim</a></li>
-                <li><a href="#"><i class="fas fa-brands fa-youtube"></i> YouTube</a></li>
-            </ul>
-        </nav>
+public class CarController : MonoBehaviour
+{
+    // Tekerleklerin fiziksel bileşenleri (Wheel Collider)
+    public WheelCollider onSol, onSag, arkaSol, arkaSag;
+    
+    // Tekerleklerin görsel bileşenleri (Tekerlek modelleri)
+    public Transform onSolModel, onSagModel, arkaSolModel, arkaSagModel;
 
-        <main class="content">
-            <div class="banner">
-                <img src="https://via.placeholder.com/800x200?text=UCUCU+GAMES" alt="Uçucu Games Banner">
-            </div>
+    public float motorGucu = 2000f;
+    public float frenGucu = 3000f;
+    public float maxDonusAcisi = 35f;
 
-            <section class="game-section">
-                <h3>ÖNE ÇIKAN OYUNLAR</h3>
-                <div class="grid">
-                    <a href="https://g.eaglercraft.com/" target="_blank" class="card">
-                        <div class="card-image">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft">
-                        </div>
-                        <p class="game-title">Minecraft 1.8.8</p>
-                    </a>
+    private float gazInput;
+    private float direksiyonInput;
+    private bool frenYapiliyor mu;
 
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="https://via.placeholder.com/150" alt="Jumping Şakir">
-                        </div>
-                        <p class="game-title">Jumping Şakir</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
+    void Update()
+    {
+        // Klavyeden girişleri al (W,A,S,D veya Ok Tuşları)
+        gazInput = Input.GetAxis("Vertical");
+        direksiyonInput = Input.GetAxis("Horizontal");
+        frenYapiliyor mu = Input.GetKey(KeyCode.Space);
 
-</body>
-</html>
+        TekerlekModelleriniGuncelle();
+    }
+
+    void FixedUpdate()
+    {
+        // 1. Motor Gücü Uygula
+        arkaSol.motorTorque = gazInput * motorGucu;
+        arkaSag.motorTorque = gazInput * motorGucu;
+
+        // 2. Direksiyon Dönüşü
+        onSol.steerAngle = direksiyonInput * maxDonusAcisi;
+        onSag.steerAngle = direksiyonInput * maxDonusAcisi;
+
+        // 3. Fren Sistemi
+        if (frenYapiliyor mu)
+        {
+            onSol.brakeTorque = frenGucu;
+            onSag.brakeTorque = frenGucu;
+            arkaSol.brakeTorque = frenGucu;
+            arkaSag.brakeTorque = frenGucu;
+        }
+        else
+        {
+            onSol.brakeTorque = 0;
+            onSag.brakeTorque = 0;
+            arkaSol.brakeTorque = 0;
+            arkaSag.brakeTorque = 0;
+        }
+    }
+
+    // Tekerlek modellerinin (Görselin) Collider ile aynı hizada dönmesini sağlar
+    void TekerlekModelleriniGuncelle()
+    {
+        TekerlekPozisyonuGuncelle(onSol, onSolModel);
+        TekerlekPozisyonuGuncelle(onSag, onSagModel);
+        TekerlekPozisyonuGuncelle(arkaSol, arkaSolModel);
+        TekerlekPozisyonuGuncelle(arkaSag, arkaSagModel);
+    }
+
+    void TekerlekPozisyonuGuncelle(WheelCollider collider, Transform model)
+    {
+        Vector3 pos;
+        Quaternion rot;
+        collider.GetWorldPose(out pos, out rot);
+        model.position = pos;
+        model.rotation = rot;
+    }
+}
