@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Reyhanlı - Tam Sıfır Mesafe</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #87CEEB; font-family: sans-serif; }
+        #ui { position: absolute; top: 10px; left: 10px; color: white; background: rgba(0,0,0,0.8); padding: 12px; border-radius: 8px; z-index: 100; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <b>🚗 TAM SIFIR NOKTASI</b><br>
+        Tüm yollar 8.000 birim. Yol binaya tam yapışık.<br>
+        <small>Boşluklar tamamen kaldırıldı.</small>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x87CEEB);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        let speed = 0, angle = 0, keys = {};
+        scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+
+        const ground = new THREE.Mesh(new THREE.PlaneGeometry(200000, 200000), new THREE.MeshBasicMaterial({color: 0x2d5a2d}));
+        ground.rotation.x = -Math.PI / 2;
+        scene.add(ground);
+
+        function addRoad(w, l, x, z) {
+            const r = new THREE.Mesh(new THREE.PlaneGeometry(w, l), new THREE.MeshBasicMaterial({color: 0x222222}));
+            r.rotation.x = -Math.PI/2;
+            r.position.set(x, 0.2, z);
+            scene.add(r);
+        }
+
+        function addBuilding(w, h, d, x, z, c) {
+            const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({color: c}));
+            b.position.set(x, h/2, z);
+            scene.add(b);
+        }
+
+        // ÖLÇÜLER (Her yol 8.000 birim)
+        const yolUzunluk = 8000;
+        const yolGen = 1200;
+        const parkGen = 4000;
+        const binaGen = 3000;
+
+        // --- HİZALAMA ---
+        // Yolun merkezi X = 0 olsun. Sol kenarı -600, sağ kenarı +600 olur.
+        
+        // 1. YOL (Senin üzerinde olduğun yol)
+        addRoad(yolGen, yolUzunluk, 0, 0); 
+
+        // 2. BİNALAR (Yolun soluna tam yapışık)
+        // Yolun sol kenarı -600. Bina genişliği 3000. 
+        // Binanın merkezi: -600 - (3000/2) = -2100
+        addBuilding(binaGen, 2000, 3000, -2100, -1600, 0xffffff); // Beyaz
+        addBuilding(binaGen, 2000, 3000, -2100, 1600, 0xff0000);  // Kırmızı
+
+        // 3. PARK (Yolun sağına tam yapışık)
+        // Yolun sağ kenarı +600. Park genişliği 4000.
+        // Park merkezi: 600 + (4000/2) = 2600
+        const parkGeo = new THREE.PlaneGeometry(parkGen, yolUzunluk);
+        const parkMat = new THREE.MeshBasicMaterial({color: 0x228B22});
+        const park = new THREE.Mesh(parkGeo, parkMat);
+        park.rotation.x = -Math.PI / 2;
+        park.position.set(2600, 0.3, 0); 
+        scene.add(park);
+
+        // 4. SAĞ DİKEY YOL (Parkın öteki tarafı)
+        // Parkın sağ kenarı 2600 + 2000 = 4600.
+        // Yol merkezi: 4600 + 600 = 5200
+        addRoad(yolGen, yolUzunluk, 5200, 0);
+
+        // 5. YATAY YOLLAR (Üst ve Alt - 8.000 birim genişlikte)
+        addRoad(8000, yolGen, 2000, -yolUzunluk/2);
+        addRoad(8000, yolGen, 2000, yolUzunluk/2);
+
+        // ARABA
+        const car = new THREE.Mesh(new THREE.BoxGeometry(60, 25, 120), new THREE.MeshBasicMaterial({color: 0x111111}));
+        car.position.set(0, 12, 0); 
+        scene.add(car);
+
+        window.onkeydown = (e) => keys[e.code] = true;
+        window.onkeyup = (e) => keys[e.code] = false;
+
+        function update() {
+            if (keys['KeyW']) speed += 1.8;
+            if (keys['KeyS']) speed -= 1.2;
+            speed *= 0.96;
+            if (Math.abs(speed) > 0.1) {
+                if (keys['KeyA']) angle += 0.05;
+                if (keys['KeyD']) angle -= 0.05;
+            }
+            car.position.x += Math.sin(angle) * speed;
+            car.position.z += Math.cos(angle) * speed;
+            car.rotation.y = angle;
+            
+            camera.position.set(car.position.x - Math.sin(angle)*2500, 3000, car.position.z - Math.cos(angle)*2500);
+            camera.lookAt(car.position);
+            renderer.render(scene, camera);
+            requestAnimationFrame(update);
+        }
+        update();
+    </script>
+</body>
+</html>
